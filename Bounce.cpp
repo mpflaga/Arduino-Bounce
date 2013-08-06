@@ -38,7 +38,7 @@ void Bounce::rebounce(unsigned long interval)
 
 
 
-int Bounce::update()
+int16_t Bounce::update()
 {
 	if ( debounce() ) {
         rebounce(0);
@@ -63,14 +63,14 @@ unsigned long Bounce::duration()
 }
 
 
-int Bounce::read()
+int16_t Bounce::read()
 {
 	return (int)state;
 }
 
 
 // Protected: debounces the pin
-int Bounce::debounce() {
+uint16_t Bounce::debounce() {
 	
 	uint8_t newState = digitalRead(pin);
 	if (state != newState ) {
