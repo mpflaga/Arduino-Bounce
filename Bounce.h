@@ -23,6 +23,7 @@
  Rebounce and duration functions contributed by Eric Lowry
  Write function contributed by Jim Schimpf
  risingEdge and fallingEdge contributed by Tom Harkaway
+ attach and bounce() constructor merged in by MPFlaga, for compatibility with bounce2.h
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #ifndef Bounce_h
@@ -35,7 +36,10 @@ class Bounce
 
 public:
 	// Initialize
+  Bounce(); 
   Bounce(uint8_t pin, unsigned long interval_millis ); 
+  // Attach to a pin (and also sets initial state)
+  void attach(int pin);
 	// Sets the debounce interval
   void interval(unsigned long interval_millis); 
 	// Updates the pin

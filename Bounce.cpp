@@ -8,15 +8,23 @@
 #endif
 #include "Bounce.h"
 
-
 Bounce::Bounce(uint8_t pin,unsigned long interval_millis)
 {
 	interval(interval_millis);
 	previous_millis = millis();
 	state = digitalRead(pin);
-    this->pin = pin;
+  this->pin = pin;
 }
 
+Bounce::Bounce() {
+	this->interval_millis = 10;
+}
+
+void Bounce::attach(int pin) {
+	previous_millis = millis();
+	state = digitalRead(pin);
+  this->pin = pin;
+}
 
 void Bounce::write(int new_state)
        {
@@ -35,8 +43,6 @@ void Bounce::rebounce(unsigned long interval)
 {
 	 this->rebounce_millis = interval;
 }
-
-
 
 int16_t Bounce::update()
 {
@@ -67,7 +73,6 @@ int16_t Bounce::read()
 {
 	return (int)state;
 }
-
 
 // Protected: debounces the pin
 uint16_t Bounce::debounce() {
